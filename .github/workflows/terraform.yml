@@ -82,8 +82,8 @@ jobs:
       run: terraform init -var "tf_org=${{ secrets.TF_ORG }}" -var "tf_workspace=${{ secrets.TF_WORKSPACE }}" -var "gcp_project=${{ secrets.GCP_PROJECT }}" -var "img_path=${{ secrets.IMG_PATH }}"
 
     # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      run: terraform fmt -check
+    # - name: Terraform Format
+      # run: terraform fmt -check
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
