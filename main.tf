@@ -1,8 +1,20 @@
+terraform {
+  backend "remote" {
+    # The name of your Terraform Cloud organization.
+    organization = "${var.tf_org}"
+
+    # The name of the Terraform Cloud workspace to store Terraform state files in.
+    workspaces {
+       name = "${var.tf_workspace}"
+    }
+  }
+}
+
 provider "google" {
-  project = "augmented-axe-430305-j2"
+  project = "${var.gcp_project}"
 }
 provider "google-beta" {
-  project = "augmented-axe-430305-j2"
+  project = "${var.gcp_project}"
 }
 # Deploy image to Cloud Run
 resource "google_cloud_run_service" "apollo_test" {
@@ -12,7 +24,7 @@ resource "google_cloud_run_service" "apollo_test" {
   template {
     spec {
       containers {
-        image = "australia-southeast1-docker.pkg.dev/augmented-axe-430305-j2/playrepo/apollo_test"
+        image = "${var.img_path}"
       }
     }
   }
