@@ -77,9 +77,6 @@ jobs:
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_KEY }}
 
-    - name: Debug
-      run: echo ${{ secrets.TF_API_KEY }}
-
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init -var "tf_org=${{ secrets.TF_ORG }}" -var "tf_workspace=${{ secrets.TF_WORKSPACE }}" -var "gcp_project=${{ secrets.GCP_PROJECT }}" -var "img_path=${{ secrets.IMG_PATH }}"
